@@ -18,7 +18,7 @@ Ans: db.movies.find({franchise: 'The Hobbit'})
 
 5. get all movies released in the 90s ? 
 
-Ans: 
+Ans: db.movies.find({year:{$gt: 1990} } ) 
 
 6. get all movies released before the year 2000 or after 2010 ?
 
@@ -52,16 +52,18 @@ C) Text Search
 
 Ans: db.movies.createIndex({synopsis:"text"})
      db.movies.find({$text: {$search: "Bilbo"}})
+
 2. find all movies that have a synopsis that contains the word "Gandalf"
+
 Ans: db.movies.find({$text: {$search: "Gandalf"}})
 
 3. find all movies that have a synopsis that contains the word "Bilbo" and not the word "Gandalf" 
 
-Ans: 
+Ans: db.movies.find({$text: {$search: "Bilbo -Gandalf"}})
 
 4. find all movies that have a synopsis that contains the word "dwarves" or "hobbit"
 
-Ans: 
+Ans: db.movies.find({$text: {$search: "dwarves hobbit"}})
 
 5. find all movies that have a synopsis that contains the word "gold" and "dragon"
 
